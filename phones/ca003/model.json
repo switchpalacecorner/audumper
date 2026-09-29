@@ -1,0 +1,29 @@
+{
+ "model": "ca003",
+ "title": "Casio CA003 (au, KDDI) -- 1967:0013, data transfer mode",
+ "usb": {
+  "name": "CA003",
+  "vid": "0x1967",
+  "pid": [
+   "0x0013"
+  ],
+  "intf": 2,
+  "ep_out": "0x04",
+  "ep_in": "0x84",
+  "mode": "User Support (ユーザー補助)-> Data Comm (データ通信/USB) -> USB Setup (USB設定) -> Fullspeed Trans (データ転送モード)",
+  "transport": "bulk"
+ },
+ "link": {
+  "protocol": "au-music-port",
+  "handshake": true,
+  "baud": "0x00038400",
+  "framesize": "0x1000",
+  "parity": false
+ },
+ "delivery": {
+  "kind": "push",
+  "param": "0x10"
+ },
+ "block_magic": "0xCA030000",
+ "file_location": "Data Folder -> All Files (全データ). The two files are at the top."
+}

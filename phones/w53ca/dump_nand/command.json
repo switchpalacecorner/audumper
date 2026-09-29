@@ -1,0 +1,73 @@
+{
+ "model": "w53ca",
+ "command": "dump_nand",
+ "title": "Dump both chips, 256 MiB OneNAND and 64 MiB NAND, data and spare, in one run",
+ "push": [
+  "NAND01.HTM",
+  "NAND02.DOC"
+ ],
+ "open_order": [
+  "NAND01   -- plants the payload. Nothing visible happens; that is correct.",
+  "NAND02   -- starts the dump. Close NAND01 before opening it.",
+  "Do NOT re-open anything or press any buttons after opening NAND02."
+ ],
+ "capture": {
+  "start_marker": "W53CABEG",
+  "stop_marker": "W53CAEND",
+  "quiet_stop": 90
+ },
+ "reconstruct": {
+  "kind": "indexed",
+  "units": 131072,
+  "wire_bytes_per_unit": 2704,
+  "outputs": [
+   {
+    "file": "n1_nand.bin",
+    "seq": 1,
+    "stride": 2048,
+    "take": [
+     0,
+     2048
+    ],
+    "coverage": true
+   },
+   {
+    "file": "n1_oob.bin",
+    "seq": 4,
+    "stride": 64,
+    "take": [
+     0,
+     64
+    ],
+    "coverage": true
+   },
+   {
+    "file": "n2_nand.bin",
+    "seq": 9,
+    "stride": 512,
+    "take": [
+     0,
+     512
+    ],
+    "coverage": true
+   },
+   {
+    "file": "n2_oob.bin",
+    "seq": 12,
+    "stride": 16,
+    "take": [
+     0,
+     16
+    ],
+    "coverage": true
+   }
+  ],
+  "expect": {
+   "seq": 9,
+   "index": 0,
+   "at": 0,
+   "bytes": "060000eae80000ea",
+   "label": "n2 page 0 is the ARM exception vector table, so addressing is ABSOLUTE"
+  }
+ }
+}

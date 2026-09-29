@@ -1,0 +1,30 @@
+{
+ "model": "w47t",
+ "title": "Toshiba W47T (au, KDDI) -- 0930:0D1C, data transfer mode",
+ "usb": {
+  "name": "W47T",
+  "vid": "0x0930",
+  "pid": [
+   "0x0D1C",
+   "0x0D0B"
+  ],
+  "intf": 2,
+  "ep_out": "0x04",
+  "ep_in": "0x84",
+  "mode": "data transfer (データ通信) -> USB setting (USB設定) -> PacketWIN",
+  "transport": "bulk"
+ },
+ "link": {
+  "protocol": "au-music-port",
+  "handshake": true,
+  "baud": "0x0001C200",
+  "framesize": "0x1000",
+  "parity": false
+ },
+ "delivery": {
+  "kind": "push",
+  "param": "0x10"
+ },
+ "block_magic": "0x47470000",
+ "file_location": "Data Folder -> PC Documents (PC ドキュメント). The two files are at the top."
+}

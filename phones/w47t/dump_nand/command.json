@@ -1,0 +1,46 @@
+{
+ "model": "w47t",
+ "command": "dump_nand",
+ "title": "Dump the whole 264 MiB NAND, data and spare, in one run",
+ "push": [
+  "NAND01.MHT",
+  "NAND02.DOC"
+ ],
+ "open_order": [
+  "NAND01   -- plants the payload. Nothing visible happens; that is correct.",
+  "NAND02   -- starts the dump. Close NAND01 before opening it.",
+  "Do NOT re-open anything or press any buttons after opening NAND02."
+ ],
+ "capture": {
+  "start_marker": "W47T NAND BEGIN ",
+  "stop_marker": "W47T NAND END.  ",
+  "quiet_stop": 90
+ },
+ "reconstruct": {
+  "kind": "indexed",
+  "units": 524288,
+  "fail_seq": 5,
+  "wire_bytes_per_unit": 576,
+  "outputs": [
+   {
+    "file": "nand.bin",
+    "seq": 1,
+    "stride": 512,
+    "take": [
+     0,
+     512
+    ],
+    "coverage": true
+   },
+   {
+    "file": "oob.bin",
+    "seq": 1,
+    "stride": 16,
+    "take": [
+     512,
+     528
+    ]
+   }
+  ]
+ }
+}
