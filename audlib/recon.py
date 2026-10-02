@@ -30,6 +30,20 @@ from . import blocks
 def _slice(body, take):
     if not take:
         return body
+    #   A LIST OF [a, b] PAIRS gathers several ranges in order, for a
+    #   controller that INTERLEAVES data and spare inside one codeword.
+    #   SH002's raw read returns 4 x (464 data, 2 spare, 48 data, 10 ECC,
+    #   4 pad), so neither `nand.bin` nor `oob.bin` is one contiguous run of
+    #   the record and eight ranges per output is the only way to say so.
+    #
+    #   This is a new MANIFEST VOCABULARY case, not a change to an existing
+    #   one: `take[0]` is an int for every `[a, b]` any shipped manifest
+    #   carries, so ca003, w47t and w53ca fall straight through to the two
+    #   lines below, unaltered. `tools/recon_slice_proof.py` checks that
+    #   exhaustively against every `take` installed under `phones/`.
+    if isinstance(take[0], (list, tuple)):
+        return b''.join(body[a:b if b is not None else len(body)]
+                        for a, b in take)
     a, b = take
     return body[a:b if b is not None else len(body)]
 

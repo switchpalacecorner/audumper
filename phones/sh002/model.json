@@ -1,0 +1,34 @@
+{
+ "model": "sh002",
+ "title": "Sharp SH002 (au, KDDI) -- 04DD:9106, data transfer mode",
+ "usb": {
+  "name": "SH002",
+  "vid": "0x04DD",
+  "pid": [
+   "0x9106",
+   "0x929D",
+   "0x929E",
+   "0x929F",
+   "0x7001",
+   "0x3197"
+  ],
+  "intf": 2,
+  "ep_out": "0x04",
+  "ep_in": "0x84",
+  "mode": "User Support (ユーザー補助)-> Data Comm (データ通信/USB) -> USB Setup (USB設定) -> Fullspeed Trans　(データ転送モード)",
+  "transport": "bulk"
+ },
+ "link": {
+  "protocol": "au-music-port",
+  "handshake": true,
+  "baud": "0x0001C200",
+  "framesize": "0x1000",
+  "parity": false
+ },
+ "delivery": {
+  "kind": "push",
+  "param": "0x10"
+ },
+ "block_magic": "0x53480000",
+ "file_location": "Data Folder -> All Files (データフォルダ -> 全データ). The pushed files are at the top of the list."
+}

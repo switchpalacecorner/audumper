@@ -1,0 +1,68 @@
+{
+ "model": "sh002",
+ "command": "dump_nand",
+ "title": "Dump the NAND the apps processor can read, data and spare",
+ "push": [
+  "NAND01.MHT",
+  "NAND02.DOC"
+ ],
+ "open_order": [
+  "NAND01   -- plants the payload. Nothing visible happens; that is correct.",
+  "NAND02   -- starts the dump. Close NAND01 before opening it."
+ ],
+ "capture": {
+  "start_marker": "SH002BEG",
+  "stop_marker": "SH002END",
+  "quiet_stop": 90
+ },
+ "reconstruct": {
+  "kind": "indexed",
+  "units": 262144,
+  "wire_bytes_per_unit": 2128,
+  "outputs": [
+   {
+    "file": "nand.bin",
+    "seq": 1,
+    "stride": 2048,
+    "take": [
+     [0, 464],
+     [466, 514],
+     [528, 992],
+     [994, 1042],
+     [1056, 1520],
+     [1522, 1570],
+     [1584, 2048],
+     [2050, 2098]
+    ],
+    "coverage": true
+   },
+   {
+    "file": "oob.bin",
+    "seq": 1,
+    "stride": 64,
+    "take": [
+     [464, 466],
+     [514, 528],
+     [992, 994],
+     [1042, 1056],
+     [1520, 1522],
+     [1570, 1584],
+     [2048, 2050],
+     [2098, 2112]
+    ]
+   }
+  ],
+  "skip_record": {
+   "seq": 1,
+   "head": "000000ee",
+   "tail": "000000ee"
+  },
+  "expect": {
+   "seq": 1,
+   "index": 70400,
+   "at": 0,
+   "bytes": "1a1a1a1a1a1a1a050100000000000000",
+   "label": "block 1100 page 0, byte-identical in the JTAG reference -- addressing is ABSOLUTE"
+  }
+ }
+}

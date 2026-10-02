@@ -13,6 +13,9 @@ Currently supported:
   - dump_nand: dumps nand and oob
 - w53ca:
   - dump_nand: dumps nand and oob from both nand chips
+- sh002:
+  - dump_fs: sweeps the EMMC filesystem and rebuilds it as a directory tree
+  - dump_nand: dumps nand and oob
 
 ## Install
 

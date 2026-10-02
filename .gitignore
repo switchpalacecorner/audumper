@@ -1,0 +1,10 @@
+__pycache__
+audumper_*
+# the virtualenv the pushes run from
+.venv/
+
+# compiled python
+*.pyc
+
+# a run folder that got zipped for transport
+*.zip

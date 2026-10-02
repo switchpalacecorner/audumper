@@ -1,0 +1,41 @@
+{
+ "model": "sh002",
+ "command": "dump_fs",
+ "title": "Sweep the EFS2 filesystem and rebuild it as a directory tree",
+ "push": [
+  "FS01.MHT",
+  "FS02.DOC"
+ ],
+ "open_order": [
+  "FS01     -- plants the payload. Nothing visible happens; that is correct.",
+  "FS02     -- starts the sweep. Close FS01 before opening it."
+ ],
+ "capture": {
+  "start_marker": "SH002BEG",
+  "stop_marker": "SH002END",
+  "quiet_stop": 90
+ },
+ "reconstruct": {
+  "kind": "fs",
+  "seq": {
+   "stats": 64,
+   "entry": 65,
+   "file": 66,
+   "data": 67
+  }
+ },
+ "stats_fields": [
+  "magic",
+  "sentbegin",
+  "depth",
+  "done",
+  "nfile",
+  "ndir",
+  "nerr",
+  "nskip",
+  "nsect",
+  "budget",
+  "dirp",
+  "entp"
+ ]
+}

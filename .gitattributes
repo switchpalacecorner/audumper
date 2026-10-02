@@ -1,0 +1,25 @@
+# The payload carriers are BINARY despite their extensions. A CRLF conversion
+# would rewrite bytes inside a planted EMF record and the handset would get a
+# document that no longer transfers pc -- silently, with the file still looking
+# like a valid .MHT. w53ca's carrier is a .HTM for the same reason, so the
+# extension says nothing about the content.
+*.MHT binary
+*.mht binary
+*.DOC binary
+*.doc binary
+*.HTM binary
+*.htm binary
+*.bin binary
+*.zip binary
+
+# Everything else is text with LF, which is what the Linux side that runs the
+# pushes expects.
+*.py  text eol=lf
+*.md  text eol=lf
+*.txt text eol=lf
+
+# The manifests are STORED VERBATIM, not normalised. Two of them have CRLF
+# because they are hand-edited on the Windows side, and `text eol=lf` would
+# have git rewrite them the next time it touched the tree -- a phantom
+# modification nobody made. Nothing reads these files line-endings-first.
+*.json -text
