@@ -1,0 +1,27 @@
+{
+ "model": "cay01",
+ "command": "dump_fs",
+ "title": "Walk the EFS2 filesystem and dump every file, rebuilt as a directory tree",
+ "push": [
+  "FS01.MHT",
+  "FS02.DOC"
+ ],
+ "open_order": [
+  "FS01     -- plants the payload. Nothing visible happens; that is correct.",
+  "FS02     -- starts the walk. Close FS01 before opening it."
+ ],
+ "capture": {
+  "start_marker": "CAY01 FS    GO  ",
+  "stop_marker": "CAY01 FS    END ",
+  "quiet_stop": 120
+ },
+ "reconstruct": {
+  "kind": "fs",
+  "seq": {
+   "stats": 14,
+   "entry": 11,
+   "file": 12,
+   "data": 13
+  }
+ }
+}

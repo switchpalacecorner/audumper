@@ -6,16 +6,9 @@ Opening the two documents in order triggers the dump.
 
 Currently supported:
 
-- ca003:
-  - dump_fs: sweeps the EMMC filesystem and rebuilds it as a directory tree
-  - dump_nand: dumps nand and oob
-- w47t:
-  - dump_nand: dumps nand and oob
-- w53ca:
-  - dump_nand: dumps nand and oob from both nand chips
-- sh002:
-  - dump_fs: sweeps the EMMC filesystem and rebuilds it as a directory tree
-  - dump_nand: dumps nand and oob
+W47T, W53CA, CA003, SH002, CAY01 (G'zOne Type X)
+
+use "--p MODEL --help" to see available commands for a model.
 
 ## Install
 

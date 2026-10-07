@@ -1,0 +1,112 @@
+{
+ "model": "cay01",
+ "command": "dump_nand",
+ "title": "Dump the whole 512 MiB NAND, data and spare together, in one run",
+ "push": [
+  "NAND01.MHT",
+  "NAND02.DOC"
+ ],
+ "open_order": [
+  "NAND01   -- plants the payload. Nothing visible happens; that is correct.",
+  "NAND02   -- starts the dump. Close NAND01 before opening it."
+ ],
+ "capture": {
+  "start_marker": "CAY01 NAND  GO  ",
+  "stop_marker": "CAY01 NAND  END ",
+  "quiet_stop": 180
+ },
+ "reconstruct": {
+  "kind": "indexed",
+  "units": 262144,
+  "fail_seq": 5,
+  "wire_bytes_per_unit": 2128,
+  "outputs": [
+   {
+    "file": "nand.bin",
+    "seq": 1,
+    "stride": 2048,
+    "take": [
+     [
+      0,
+      464
+     ],
+     [
+      466,
+      514
+     ],
+     [
+      528,
+      992
+     ],
+     [
+      994,
+      1042
+     ],
+     [
+      1056,
+      1520
+     ],
+     [
+      1522,
+      1570
+     ],
+     [
+      1584,
+      2048
+     ],
+     [
+      2050,
+      2098
+     ]
+    ],
+    "coverage": true
+   },
+   {
+    "file": "oob.bin",
+    "seq": 1,
+    "stride": 64,
+    "take": [
+     [
+      514,
+      528
+     ],
+     [
+      464,
+      466
+     ],
+     [
+      1042,
+      1056
+     ],
+     [
+      992,
+      994
+     ],
+     [
+      1570,
+      1584
+     ],
+     [
+      1520,
+      1522
+     ],
+     [
+      2098,
+      2112
+     ],
+     [
+      2048,
+      2050
+     ]
+    ]
+   }
+  ],
+  "expect": {
+   "seq": 1,
+   "index": 0,
+   "at": 0,
+   "bytes": "1d1d1d1d3410d773",
+   "label": "page 0 is the MIBIB header, so addressing is ABSOLUTE -- the client the handset has open is 0:EFS2APPS at block 3064, and a client-relative read would put block 3064 page 0 here instead"
+  }
+ }
+}
